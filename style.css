@@ -73,7 +73,7 @@ header nav ul li a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url(img/1stview.png);
+  background-image: url(https://suimenka.github.io/slack_pf/1stview.png);
   background-size: cover;
   position: relative;
 
@@ -204,26 +204,26 @@ transition-duration: 0.5s;
   }
 
   .skill_content table td.icon.html {
-    background-image: url(img/html-5.png);
+    background-image: url(https://suimenka.github.io/slack_pf/html-5.png);
   }
 
   .skill_content table td.icon.css {
-    background-image: url(img/css-3.png);
+    background-image: url(https://suimenka.github.io/slack_pf/css-3.png);
   }
   .skill_content table td.icon.js {
-    background-image: url(img/javascript.png);
+    background-image: url(https://suimenka.github.io/slack_pf/javascript.png);
   }
   .skill_content table td.icon.vue {
-    background-image: url(img/vue.png);
+    background-image: url(https://suimenka.github.io/slack_pf/vue.png);
   }
   .skill_content table td.icon.nuxt {
-    background-image: url(img/nuxt-icon.png);
+    background-image: url(https://suimenka.github.io/slack_pf/nuxt-icon.png);
   }
   .skill_content table td.icon.fb {
-    background-image: url(img/firebase.png);
+    background-image: url(https://suimenka.github.io/slack_pf/firebase.png);
   }
   .skill_content table td.icon.node {
-    background-image: url(img/nodejs.png);
+    background-image: url(https://suimenka.github.io/slack_pf/nodejs.png);
   }
 
 /* === ワークス === */
