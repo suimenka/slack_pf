@@ -7,12 +7,6 @@ body {
   margin: 0;
 }
 
-/*  {
-  box-sizing: border-box;
-} */
-/* .container {
-  width: 100%;
-} */
 /* ===ヘッダー=== */
 header {
   display: -webkit-box;
@@ -47,11 +41,11 @@ header nav {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 100%;
-  height: 56px;
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
+  width: 100%;
+  height: 56px;
 }
 
 header nav ul {
@@ -74,18 +68,148 @@ header nav li a:hover {
   color: #e65f78;
 }
 
-/* ===ファーストビュー=== */
-.firstview {
-  height: 664px;
+/* ===ハンバーガーメニュー=== */
+.menu-btn {
+  position: fixed;
+  top: 0;
+  right: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  height: 60px;
+  width: 60px;
+  /* 元は60px。ここを触るとスマホ幅変わる */
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  z-index: 90;
+  background-color: #dcdcdc;
+}
+
+.menu-btn span,
+.menu-btn span:before,
+.menu-btn span:after {
+  content: "";
+  display: block;
+  height: 3px;
+  width: 25px;
+  border-radius: 3px;
+  background-color: #ffffff;
+  position: absolute;
+}
+
+.menu-btn span:before {
+  bottom: 8px;
+}
+
+.menu-btn span:after {
+  top: 8px;
+}
+
+#menu-btn-check:checked ~ .menu-btn span {
+  background-color: rgba(255, 255, 255, 0);
+  /*メニューオープン時は真ん中の線を透明にする*/
+}
+
+#menu-btn-check:checked ~ .menu-btn span::before {
+  bottom: 0;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+#menu-btn-check:checked ~ .menu-btn span::after {
+  top: 0;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+#menu-btn-check {
+  display: none;
+}
+
+.menu-content {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 100%;
+  /*leftの値を変更してメニューを画面外へ*/
+  z-index: 80;
+  background-color: #dcdcdc;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  /*アニメーション設定*/
+}
+
+.menu-content ul {
+  padding: 70px 10px 0;
+}
+
+.menu-content ul li {
+  border-bottom: solid 1px #ffffff;
+  list-style: none;
+}
+
+.menu-content ul li a {
+  display: block;
+  width: 100%;
+  font-size: 15px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 9px 15px 10px 0;
+  position: relative;
+}
+
+.menu-content ul li a::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-top: solid 2px #ffffff;
+  border-right: solid 2px #ffffff;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  position: absolute;
+  right: 11px;
+  top: 16px;
+}
+
+#menu-btn-check:checked ~ .menu-content {
+  left: 0;
+  /*メニューを画面内へ*/
+}
+
+@media screen and (max-width: 599px) {
+  header {
+    height: 60px;
+    padding-left: 20px;
+  }
+  header nav ul li {
+    display: none;
+  }
+  header .hamburger-menu {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 598px) {
+  .hamburger-menu {
+    display: none;
+    /*598px以上では使用しない */
+  }
+}
+
+/* ===ファーストビュー=== */
+.firstview {
+  width: 100%;
+  height: 664px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   background-image: url("https://suimenka.github.io/slack_pf/1stview.png");
   background-size: cover;
   position: relative;
@@ -93,17 +217,18 @@ header nav li a:hover {
 
 .firstview::before {
   content: "";
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.1);
   position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 20;
 }
 
 .firstview .firstview_title {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  position: absolute;
   z-index: 30;
+  margin: auto;
 }
 
 .firstview .firstview_title h2 {
@@ -114,6 +239,17 @@ header nav li a:hover {
 .firstview .firstview_title span {
   font-size: 60px;
   font-weight: normal;
+}
+
+@media screen and (max-width: 599px) {
+  .firstview {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    background-size: auto;
+  }
+  .firstview .firstview_title span {
+    font-size: 40px;
+  }
 }
 
 /* ===アバウト=== */
@@ -168,10 +304,35 @@ header nav li a:hover {
           transition-duration: 0.3s;
 }
 
+@media screen and (max-width: 599px) {
+  .aboutme {
+    width: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    margin: 70px 0;
+    padding: 0 20px 20px 20px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+  }
+  .aboutme .aboutme_img img {
+    width: 100%;
+    height: auto;
+  }
+  .aboutme .aboutme_content {
+    width: 100%;
+  }
+}
+
 /* ===スキル=== */
 .skill {
   height: 713px;
-  background-color: gray;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -219,7 +380,8 @@ header nav li a:hover {
   cursor: pointer;
 }
 
-.skill .skill_content table td, .skill .skill_content table th {
+.skill .skill_content table td,
+.skill .skill_content table th {
   text-align: center;
   width: 25%;
   padding: 15px 0;
@@ -260,6 +422,19 @@ header nav li a:hover {
   background-image: url("https://suimenka.github.io/slack_pf/nodejs.png");
 }
 
+@media screen and (max-width: 599px) {
+  .skill {
+    padding-bottom: 70px;
+  }
+  .skill .skill_content table {
+    width: 90%;
+    margin: 20px;
+  }
+  .skill .skill_content table td.icon {
+    background-position: left;
+  }
+}
+
 /* === ワークス === */
 .works {
   padding: 70px 5%;
@@ -280,8 +455,6 @@ header nav li a:hover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -336,6 +509,27 @@ header nav li a:hover {
   -webkit-transition-duration: 0.5s;
           transition-duration: 0.5s;
   border-bottom: dashed 1px #e65f78;
+}
+
+@media screen and (max-width: 599px) {
+  .works {
+    width: auto;
+    padding-top: 40px;
+  }
+  .works ul {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .works ul li {
+    width: 100%;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+  }
 }
 
 /* === タイムライン === */
@@ -438,9 +632,17 @@ header nav li a:hover {
   border-left: 2px dashed #cfcdcd;
 }
 
+@media screen and (max-width: 599px) {
+  .timeline {
+    width: auto;
+    padding: 30px 30px 70px 30px;
+  }
+}
+
 /* === コンタクト === */
 .contact {
-  margin: 0 360px;
+  margin: 0 auto;
+  width: 40%;
   padding: 70px 72px;
 }
 
@@ -507,6 +709,13 @@ header nav li a:hover {
   background: #e65f78;
   -webkit-transition-duration: 0.3s;
           transition-duration: 0.3s;
+}
+
+@media screen and (max-width: 599px) {
+  .contact {
+    width: auto;
+    padding: 30px;
+  }
 }
 
 /* ===フッター=== */
