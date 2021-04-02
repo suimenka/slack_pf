@@ -1,0 +1,698 @@
+html {
+  font-family: "Arial", "メイリオ";
+}
+
+body {
+  margin: 0;
+}
+
+/* ===ヘッダー=== */
+
+header {
+  display: flex;
+  height: 60px;
+  padding: 0 72px;
+  align-items: center;
+
+  .header_title {
+    display: flex;
+
+    h1 a {
+      font-size: 32px;
+      font-weight: bold;
+      text-decoration: none;
+      margin: 16px 0;
+      color: black;
+    }
+
+    h1 a:hover {
+      color: #e65f78;
+    }
+  }
+
+  nav {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    height: 56px;
+
+    ul {
+      display: flex;
+      height: 24px;
+      margin: 16px 0;
+      padding: 0 0 0 40px;
+      list-style: none;
+    }
+
+    li a {
+      margin-left: 30px;
+      color: black;
+      text-decoration: none;
+    }
+
+    li a:hover {
+      color: #e65f78;
+    }
+  }
+}
+
+/* ===ハンバーガーメニュー=== */
+
+.menu-btn {
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: flex;
+  height: 60px;
+  width: 60px; /* 元は60px。ここを触るとスマホ幅変わる */
+  justify-content: center;
+  align-items: center;
+  z-index: 90;
+  background-color: #dcdcdc;
+}
+.menu-btn span,
+.menu-btn span:before,
+.menu-btn span:after {
+  content: "";
+  display: block;
+  height: 3px;
+  width: 25px;
+  border-radius: 3px;
+  background-color: #ffffff;
+  position: absolute;
+}
+.menu-btn span:before {
+  bottom: 8px;
+}
+.menu-btn span:after {
+  top: 8px;
+}
+
+#menu-btn-check:checked ~ .menu-btn span {
+  background-color: rgba(255, 255, 255, 0);
+  /*メニューオープン時は真ん中の線を透明にする*/
+}
+#menu-btn-check:checked ~ .menu-btn span::before {
+  bottom: 0;
+  transform: rotate(45deg);
+}
+#menu-btn-check:checked ~ .menu-btn span::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+#menu-btn-check {
+  display: none;
+}
+
+.menu-content {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 100%; /*leftの値を変更してメニューを画面外へ*/
+  z-index: 80;
+  background-color: #dcdcdc;
+  transition: all 0.5s; /*アニメーション設定*/
+}
+
+.menu-content ul {
+  padding: 70px 10px 0;
+}
+.menu-content ul li {
+  border-bottom: solid 1px #ffffff;
+  list-style: none;
+}
+.menu-content ul li a {
+  display: block;
+  width: 100%;
+  font-size: 15px;
+  box-sizing: border-box;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 9px 15px 10px 0;
+  position: relative;
+}
+.menu-content ul li a::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-top: solid 2px #ffffff;
+  border-right: solid 2px #ffffff;
+  transform: rotate(45deg);
+  position: absolute;
+  right: 11px;
+  top: 16px;
+}
+
+#menu-btn-check:checked ~ .menu-content {
+  left: 0; /*メニューを画面内へ*/
+}
+
+@media screen and (max-width: 599px) {
+  header {
+    height: 60px;
+    padding-left: 20px;
+
+    nav ul li {
+      display: none;
+    }
+
+    .hamburger-menu {
+      // width: auto;
+      display: block;
+    }
+  }
+}
+
+@media screen and (min-width: 598px) {
+  .hamburger-menu {
+    display: none; /*598px以上では使用しない */
+  }
+}
+
+/* ===ファーストビュー=== */
+
+.firstview {
+  width: 100%;
+  height: 664px;
+  display: flex;
+  background-image: url("https://suimenka.github.io/slack_pf/1stview.png");
+  background-size: cover;
+  position: relative;
+
+  &::before {
+    content: "";
+    background-color: rgba(255, 255, 255, 0.1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 20;
+  }
+
+  .firstview_title {
+    z-index: 30;
+    margin: auto;
+
+    h2 {
+      color: #ffffff;
+      font-weight: normal;
+    }
+
+    span {
+      font-size: 60px;
+      font-weight: normal;
+    }
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .firstview {
+    box-sizing: border-box;
+    background-size: auto;
+
+    .firstview_title {
+      span {
+        font-size: 40px;
+      }
+    }
+  }
+}
+
+/* ===アバウト=== */
+
+.aboutme {
+  padding: 70px 72px;
+  display: flex;
+  justify-content: space-between;
+
+  .aboutme_img {
+    img {
+      width: 536px;
+      height: 333px;
+      border-radius: 10px;
+    }
+  }
+
+  .aboutme_content {
+    width: 634px;
+    height: 333px;
+
+    h2 {
+      margin: 0 0 20px 0;
+      font-weight: normal;
+    }
+
+    p {
+      margin: 16px 0;
+    }
+
+    ul {
+      margin: 40px 0;
+      padding-left: 0;
+    }
+
+    li {
+      list-style: none;
+      display: inline-block;
+      padding-right: 10px;
+    }
+
+    .i1 {
+      color: #000;
+
+      &:hover {
+        color: #e65f78;
+        transition-duration: 0.3s;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .aboutme {
+    width: auto;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin: 70px 0;
+    padding: 0 20px 20px 20px;
+    box-sizing: border-box;
+
+    .aboutme_img {
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    .aboutme_content {
+      width: 100%;
+    }
+  }
+}
+
+/* ===スキル=== */
+
+.skill {
+  height: 713px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f9f9f9;
+
+  .skill_title {
+    height: 50px;
+    margin-bottom: 40px;
+
+    h2 {
+      font-size: 40px;
+      font-weight: normal;
+      text-align: center;
+    }
+  }
+
+  .skill_content {
+    margin-top: 30px;
+
+    table {
+      width: 1293px;
+      background-color: #fff;
+      border-collapse: collapse;
+      border-spacing: 50px;
+
+      tr {
+        border-bottom: 1px solid #eee;
+
+        &:hover {
+          background-color: #d4f0fd;
+          cursor: pointer;
+        }
+      }
+
+      td,
+      th {
+        text-align: center;
+        width: 25%;
+        padding: 15px 0;
+      }
+
+      td.icon {
+        background-size: 25px;
+        background-position: left 70px center;
+        background-repeat: no-repeat;
+        padding-left: 20px;
+      }
+
+      td.icon.html {
+        background-image: url("https://suimenka.github.io/slack_pf/html-5.png");
+      }
+
+      td.icon.css {
+        background-image: url("https://suimenka.github.io/slack_pf/css-3.png");
+      }
+      td.icon.js {
+        background-image: url("https://suimenka.github.io/slack_pf/javascript.png");
+      }
+      td.icon.vue {
+        background-image: url("https://suimenka.github.io/slack_pf/vue.png");
+      }
+      td.icon.nuxt {
+        background-image: url("https://suimenka.github.io/slack_pf/nuxt-icon.png");
+      }
+      td.icon.fb {
+        background-image: url("https://suimenka.github.io/slack_pf/firebase.png");
+      }
+      td.icon.node {
+        background-image: url("https://suimenka.github.io/slack_pf/nodejs.png");
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .skill {
+    padding-bottom: 70px;
+
+    .skill_content {
+      table {
+        width: 90%;
+        margin: 20px;
+
+        td.icon {
+          background-position: left;
+        }
+      }
+    }
+  }
+}
+
+/* === ワークス === */
+
+.works {
+  padding: 70px 5%;
+
+  .works_title {
+    margin-bottom: 40px;
+
+    h2 {
+      font-size: 40px;
+      font-weight: normal;
+      text-align: center;
+    }
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    padding-inline-start: 0;
+  }
+
+  li {
+    border: 2px solid #dcdcdc;
+    border-radius: 8px;
+    width: 32%;
+    margin-bottom: 20px;
+  }
+
+  img {
+    width: 100%;
+    border-radius: 8px 8px 0 0;
+  }
+
+  .works_content {
+    padding: 10px 20px;
+
+    h3 {
+      font-weight: normal;
+      letter-spacing: 1px;
+    }
+
+    p {
+      font-size: 14px;
+    }
+
+    .card_number {
+      font-size: 22px;
+      text-align: right;
+    }
+
+    a {
+      font-size: 12px;
+    }
+
+    .more {
+      text-decoration: none;
+      border-bottom: dashed 1px black;
+      font-size: 12px;
+      color: black;
+      cursor: pointer;
+
+      &:hover {
+        color: #e65f78;
+        transition-duration: 0.5s;
+        border-bottom: dashed 1px #e65f78;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .works {
+    width: auto;
+    padding-top: 40px;
+
+    ul {
+      flex-direction: column;
+      justify-content: center;
+
+      li {
+        width: 100%;
+        box-sizing: border-box;
+      }
+    }
+  }
+}
+
+/* === タイムライン === */
+
+.timeline {
+  background-color: #f9f9f9;
+  padding: 70px 72px;
+
+  .timeline_title {
+    margin-bottom: 40px;
+
+    h2 {
+      font-size: 40px;
+      font-weight: normal;
+      text-align: center;
+    }
+  }
+
+  .timeline_content {
+    .timeline_line {
+      padding-bottom: 40px;
+      width: 50%;
+      box-sizing: border-box;
+      display: flex;
+      position: relative;
+      border-right: 2px dashed #cfcdcd;
+    }
+
+    .timeline_line.timeline_line2 {
+      border-left: 2px dashed #cfcdcd;
+      border-right: none;
+      margin: 0 0 0 auto;
+    }
+
+    .hisi {
+      width: 11px;
+      height: 11px;
+      transform: rotate(45deg);
+      background: #cfcdcd;
+      border: 5px solid #fff;
+      box-shadow: 0 0 0 2px #cfcdcd;
+      position: absolute;
+      right: -11px;
+      top: -11px;
+    }
+
+    .hisi.hisi_2 {
+      position: absolute;
+      /* right: -11px; */
+      top: 100%;
+    }
+
+    .content_box {
+      width: 80%;
+      padding: 10px;
+      color: #748182;
+
+      span {
+        color: #e65f78;
+        font-weight: bold;
+      }
+
+      h3 {
+        font-size: 22px;
+        font-weight: normal;
+        color: black;
+      }
+
+      &:hover {
+        border: 2px dashed #cfcdcd;
+        transition: all 0.3s ease 0s;
+      }
+
+      &:hover h3 {
+        color: #e65f78;
+      }
+
+      .content_1 {
+        text-align: right;
+      }
+
+      .content_2 {
+        margin: 0 0 0 auto;
+        text-align: left;
+      }
+    }
+
+    .timeline_yoko {
+      width: 20%;
+      height: 62px;
+
+      border-bottom: 2px dashed #cfcdcd;
+    }
+
+    .timeline_yoko.yoko2 {
+      border-left: 2px dashed #cfcdcd;
+    }
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .timeline {
+    width: auto;
+    padding: 30px 30px 70px 30px;
+  }
+}
+
+/* === コンタクト === */
+
+.contact {
+  margin: 0 auto;
+  width: 40%;
+  padding: 70px 72px;
+
+  .contact_title {
+    margin: 0 0 40px;
+
+    h2 {
+      font-size: 40px;
+      font-weight: normal;
+      text-align: center;
+      margin-bottom: 33px;
+    }
+
+    p {
+      text-align: center;
+      margin: 16px 0;
+    }
+  }
+
+  .contact_content {
+    margin-top: 30px;
+
+    form {
+      margin: 0 auto;
+
+      input,
+      textarea {
+        width: 100%;
+        background: #e9cdc1;
+        border-style: none;
+        border-radius: 5px;
+      }
+
+      input {
+        height: 50px;
+        margin-bottom: 40px;
+      }
+
+      textarea {
+        margin-bottom: 20px;
+      }
+
+      input#check {
+        width: 20px;
+        height: 20px;
+        margin-left: 20px;
+      }
+
+      button {
+        width: 50%;
+        height: 50px;
+        background: black;
+        color: white;
+        border-style: none;
+        margin: 0 auto;
+        display: block;
+        border-radius: 30px;
+        font-size: 16px;
+
+        &:hover {
+          background: #e65f78;
+          transition-duration: 0.3s;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .contact {
+    width: auto;
+    padding: 30px;
+  }
+}
+
+/* ===フッター=== */
+
+footer {
+  height: 110px;
+  padding: 20px 0;
+  text-align: center;
+  background-color: black;
+  margin-bottom: 0;
+
+  ul {
+    margin: 16px 0;
+    padding: 0 0 0 40px;
+  }
+
+  li {
+    list-style: none;
+    display: inline-block;
+    padding-right: 10px;
+  }
+
+  .i2 {
+    color: #fff;
+
+    &:hover {
+      color: #e65f78;
+      transition-duration: 0.3s;
+    }
+  }
+
+  p {
+    font: 16px;
+    color: #fff;
+  }
+}
