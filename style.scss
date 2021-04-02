@@ -113,7 +113,9 @@ header {
   left: 100%; /*leftの値を変更してメニューを画面外へ*/
   z-index: 80;
   background-color: #dcdcdc;
+  opacity: 0.9;
   transition: all 0.5s; /*アニメーション設定*/
+  padding: 0 20px;
 }
 
 .menu-content ul {
